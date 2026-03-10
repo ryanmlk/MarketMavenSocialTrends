@@ -87,7 +87,10 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
                 <p className="text-slate-500 dark:text-slate-400 mt-1">Real-time conversation monitoring and correlation analysis</p>
               </div>
               <div className="flex gap-3">
-                <button className="bg-primary text-white px-6 py-2 rounded-lg text-sm font-bold shadow-lg shadow-primary/30">
+                <button 
+                  onClick={() => window.open('/api/export', '_blank')}
+                  className="bg-primary text-white px-6 py-2 rounded-lg text-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all"
+                >
                   Export Report
                 </button>
               </div>
