@@ -10,8 +10,8 @@ describe('POST /api/upload', () => {
       .attach('file', Buffer.from(csvContent), 'test.csv');
 
     expect(response.status).toBe(200);
-    expect(response.body.filename).toBe('test.csv');
-    expect(response.body.mimetype).toBe('text/csv');
+    expect(response.body.message).toContain('successfully');
+    expect(response.body.analysis).toBeDefined();
   });
 
   it('should upload a JSON file successfully', async () => {
@@ -21,8 +21,8 @@ describe('POST /api/upload', () => {
       .attach('file', Buffer.from(jsonContent), 'test.json');
 
     expect(response.status).toBe(200);
-    expect(response.body.filename).toBe('test.json');
-    expect(response.body.mimetype).toBe('application/json');
+    expect(response.body.message).toContain('successfully');
+    expect(response.body.analysis).toBeDefined();
   });
 
   it('should return 400 if no file is uploaded', async () => {

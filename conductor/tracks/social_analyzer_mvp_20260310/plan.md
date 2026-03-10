@@ -29,13 +29,13 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Core Analysis (Clustering & Correlations)' (Protocol in workflow.md)
 
 ## Phase 4: Dashboard & Visualization (Stitch UI)
-- [ ] Task: Integrate Stitch UI Screens (Data Upload)
-    - [ ] Implement Mobile/Desktop Upload screens using Tailwind
-    - [ ] Connect upload forms to the backend API
-- [ ] Task: Build Insights Dashboard
-    - [ ] Implement Mobile/Desktop Dashboard screens
-    - [ ] Integrate Chart.js/Recharts for trend visualization
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Dashboard & Visualization (Stitch UI)' (Protocol in workflow.md)
+- [x] Task: Integrate Stitch UI Screens (Data Upload)
+    - [x] Implement Mobile/Desktop Upload screens using Tailwind
+    - [x] Connect upload forms to the backend API
+- [x] Task: Build Insights Dashboard
+    - [x] Implement Mobile/Desktop Dashboard screens
+    - [x] Integrate Chart.js/Recharts for trend visualization
+- [~] Task: Conductor - User Manual Verification 'Phase 4: Dashboard & Visualization (Stitch UI)' (Protocol in workflow.md)
 
 ## Phase 5: Reporting & Export
 - [ ] Task: Implement Report Generation API

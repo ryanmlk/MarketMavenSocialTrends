@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Upload - Mobile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6a25f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#161022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-4 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-primary/20">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-slate-200 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Data Upload</h1>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-slate-200 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto px-4 py-6 space-y-8 pb-24">
+<!-- Upload Section -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold px-1">Upload Files</h2>
+<div class="flex flex-col items-center justify-center gap-4 p-8 rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors cursor-pointer group">
+<div class="size-16 rounded-full bg-primary/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<div class="text-center">
+<p class="text-lg font-semibold">Tap to upload</p>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">PDF, CSV, or TXT files supported</p>
+<p class="text-xs text-slate-400 dark:text-slate-500 mt-1">Max file size: 50MB</p>
+</div>
+<button class="mt-2 px-6 py-2.5 bg-primary text-white rounded-lg font-bold text-sm shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                    Select Files
+                </button>
+</div>
+</section>
+<!-- Processing Parameters -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-xl font-bold">Parameters</h2>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">Advanced Mode</span>
+</div>
+<div class="space-y-3">
+<div class="p-4 rounded-xl bg-slate-100 dark:bg-primary/10 border border-slate-200 dark:border-primary/10">
+<label class="block text-sm font-semibold mb-3">Model Selection</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 rounded-lg border-2 border-primary bg-primary/20 text-xs font-bold">Fast Engine</button>
+<button class="py-2 px-3 rounded-lg border border-slate-300 dark:border-primary/20 text-xs font-medium opacity-60">High Accuracy</button>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-slate-100 dark:bg-primary/10 border border-slate-200 dark:border-primary/10">
+<div class="flex justify-between items-center mb-3">
+<label class="text-sm font-semibold">Privacy Level</label>
+<span class="text-xs text-primary font-bold">Strict</span>
+</div>
+<input class="w-full h-1.5 bg-slate-300 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-slate-100 dark:bg-primary/10 border border-slate-200 dark:border-primary/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<span class="text-sm font-semibold">Auto-tagging</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity -->
+<section class="space-y-4">
+<h2 class="text-xl font-bold px-1">Recent Activity</h2>
+<div class="space-y-2">
+<!-- Activity Item -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+<div class="size-10 rounded-lg bg-green-500/20 flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Q4_Revenue_Report.csv</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Processed • 2m ago</p>
+</div>
+<span class="text-xs font-bold text-slate-400">2.4MB</span>
+</div>
+<!-- Activity Item -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined animate-pulse">sync</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">User_Feedback_Batch_A.pdf</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Uploading 65% • 10s left</p>
+</div>
+<span class="text-xs font-bold text-slate-400">14.8MB</span>
+</div>
+<!-- Activity Item -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800 opacity-60">
+<div class="size-10 rounded-lg bg-slate-500/20 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Historical_Logs_2023.txt</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Archived • 1h ago</p>
+</div>
+<span class="text-xs font-bold text-slate-400">5.1MB</span>
+</div>
+</div>
+<button class="w-full py-3 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                View All Activity
+            </button>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-primary/20 pb-safe-area">
+<div class="flex items-center justify-around h-16">
+<a class="flex flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">cloud_upload</span>
+<span class="text-[10px] font-bold">Upload</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-bold">History</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Floating Action Background Blur (Optional for mobile aesthetics) -->
+<div class="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none z-40"></div>
+</body></html>
