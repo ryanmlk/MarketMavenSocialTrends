@@ -14,9 +14,9 @@
 - [x] Task: Implement Data Upload API [b00cd9e]
     - [x] Write tests for CSV/JSON upload validation
     - [x] Implement Express route for file upload (using `multer` or similar)
-- [~] Task: Build Data Cleaning and Extraction Engine
-    - [ ] Write tests for text cleaning and keyword extraction
-    - [ ] Implement cleaning logic using `Natural` and `Danfo.js`
+- [x] Task: Build Data Cleaning and Extraction Engine [21b6c31]
+    - [x] Write tests for text cleaning and keyword extraction
+    - [x] Implement cleaning logic using `Natural` and `Danfo.js`
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Data Upload & Processing Engine' (Protocol in workflow.md)
 
 ## Phase 3: Core Analysis (Clustering & Correlations)
