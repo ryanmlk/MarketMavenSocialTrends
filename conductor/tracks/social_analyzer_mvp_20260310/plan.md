@@ -20,7 +20,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Data Upload & Processing Engine' (Protocol in workflow.md)
 
 ## Phase 3: Core Analysis (Clustering & Correlations)
-- [ ] Task: Implement Theme Clustering Logic
+- [~] Task: Implement Theme Clustering Logic
     - [ ] Write tests for keyword-based theme grouping
     - [ ] Implement clustering algorithm using `Natural`
 - [ ] Task: Implement Correlation Detection
