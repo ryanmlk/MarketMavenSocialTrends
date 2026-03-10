@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { cleanText, extractKeywords } from './cleaning';
+import { cleanText, extractKeywords } from './cleaning.js';
 
 describe('Data Cleaning & Extraction', () => {
   describe('cleanText', () => {
