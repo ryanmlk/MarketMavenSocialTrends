@@ -88,7 +88,14 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
               </div>
               <div className="flex gap-3">
                 <button 
-                  onClick={() => window.open('/api/export', '_blank')}
+                  onClick={() => {
+                    const link = document.createElement('a');
+                    link.href = '/api/export';
+                    link.setAttribute('download', 'social_analysis_report.csv');
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
                   className="bg-primary text-white px-6 py-2 rounded-lg text-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all"
                 >
                   Export Report
