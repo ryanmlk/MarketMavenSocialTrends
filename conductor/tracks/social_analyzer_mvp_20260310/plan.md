@@ -23,9 +23,9 @@
 - [x] Task: Implement Theme Clustering Logic [bc39aad]
     - [x] Write tests for keyword-based theme grouping
     - [x] Implement clustering algorithm using `Natural`
-- [~] Task: Implement Correlation Detection
-    - [ ] Write tests for keyword frequency correlation
-    - [ ] Implement detection logic using `Danfo.js`
+- [x] Task: Implement Correlation Detection [946acde]
+    - [x] Write tests for keyword frequency correlation
+    - [x] Implement detection logic using `Danfo.js`
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Core Analysis (Clustering & Correlations)' (Protocol in workflow.md)
 
 ## Phase 4: Dashboard & Visualization (Stitch UI)
