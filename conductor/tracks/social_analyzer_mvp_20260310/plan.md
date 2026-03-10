@@ -11,7 +11,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Project Scaffolding & Environment Setup' (Protocol in workflow.md)
 
 ## Phase 2: Data Upload & Processing Engine
-- [ ] Task: Implement Data Upload API
+- [~] Task: Implement Data Upload API
     - [ ] Write tests for CSV/JSON upload validation
     - [ ] Implement Express route for file upload (using `multer` or similar)
 - [ ] Task: Build Data Cleaning and Extraction Engine
