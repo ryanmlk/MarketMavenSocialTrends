@@ -10,5 +10,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Export a pre-generated mock report**
+- [x] **Track: Export a pre-generated mock report**
 *Link: [./tracks/export_mock_report_20260311/](./tracks/export_mock_report_20260311/)*

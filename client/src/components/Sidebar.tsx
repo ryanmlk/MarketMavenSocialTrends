@@ -4,9 +4,11 @@ interface SidebarProps {
   currentView: 'upload' | 'dashboard';
   onNavigateUpload: () => void;
   onNavigateDashboard: () => void;
+  isDarkMode: boolean;
+  toggleTheme: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigateUpload, onNavigateDashboard }) => {
+const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigateUpload, onNavigateDashboard, isDarkMode, toggleTheme }) => {
   return (
     <aside className="w-64 flex-shrink-0 border-r border-primary/10 bg-background-light dark:bg-background-dark/50 backdrop-blur-xl flex flex-col h-full fixed md:relative z-20">
       <div className="p-6 flex flex-col gap-8 h-full">
@@ -16,7 +18,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigateUpload, onNavi
             <span className="material-symbols-outlined text-2xl font-bold">query_stats</span>
           </div>
           <div>
-            <h1 className="text-sm font-bold tracking-tight text-slate-900 dark:text-white">Insights Engine</h1>
+            <h1 className="text-sm font-bold tracking-tight text-slate-900 dark:text-white">Market Maven</h1>
             <p className="text-[10px] uppercase tracking-widest text-primary font-bold">Enterprise Pro</p>
           </div>
         </div>
@@ -38,6 +40,17 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigateUpload, onNavi
             <span className="text-sm font-medium">Data Upload</span>
           </button>
         </nav>
+
+        <div className="mt-auto">
+          <button 
+            onClick={toggleTheme} 
+            data-testid="theme-toggle-button"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:bg-primary/10 hover:text-primary transition-all w-full text-left"
+          >
+            <span className="material-symbols-outlined text-xl">{isDarkMode ? 'light_mode' : 'dark_mode'}</span>
+            <span className="text-sm font-medium">{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+          </button>
+        </div>
       </div>
     </aside>
   );

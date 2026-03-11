@@ -12,10 +12,10 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Data Visualization Polish' (Protocol in workflow.md)
 
 ## Phase 2: Theme Toggle
-- [ ] Task: Implement Theme Context/State
-    - [ ] Update `App.tsx` or create a context to manage `isDarkMode` state.
-    - [ ] Apply or remove the `.dark` class on the root HTML `<html>` or `<body>` element based on state.
-- [ ] Task: Add Sidebar Toggle Button
-    - [ ] Update `Sidebar.tsx` to accept the theme state and a toggle function as props.
-    - [ ] Add the toggle button UI to the bottom of the sidebar.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Theme Toggle' (Protocol in workflow.md)
+- [x] Task: Implement Theme Context/State
+    - [x] Update `App.tsx` or create a context to manage `isDarkMode` state.
+    - [x] Apply or remove the `.dark` class on the root HTML `<html>` or `<body>` element based on state.
+- [x] Task: Add Sidebar Toggle Button
+    - [x] Update `Sidebar.tsx` to accept the theme state and a toggle function as props.
+    - [x] Add the toggle button UI to the bottom of the sidebar.
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Theme Toggle' (Protocol in workflow.md)

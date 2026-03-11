@@ -7,7 +7,7 @@ import {
   generatePdfContent,
   generateTrendingKeywordsSummary,
   generateLikesSummary
-} from './generate-report';
+} from './generate-report.js';
 import * as path from 'path';
 
 describe('generate-report', () => {

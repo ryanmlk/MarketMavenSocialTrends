@@ -40,4 +40,4 @@
     -   [x] Sub-task: Ensure the test passes.
 - [x] **Task: Clean up old export endpoint (optional but recommended)** [2413b5c]
     -   [x] Sub-task: Since the export is now a static file, the `/api/export` endpoint in the Express server (`server/src/index.ts`) may no longer be needed. Analyze and consider removing it and its related tests (`server/src/export.test.ts`).
--   [ ] **Task: Conductor - User Manual Verification 'Phase 2: Integration and Serving the PDF' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 2: Integration and Serving the PDF' (Protocol in workflow.md)** [7de33f4]

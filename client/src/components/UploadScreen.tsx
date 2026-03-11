@@ -4,9 +4,11 @@ import Sidebar from './Sidebar';
 interface UploadScreenProps {
   onUploadSuccess: (data: any) => void;
   onNavigateDashboard: () => void;
+  isDarkMode: boolean;
+  toggleTheme: () => void;
 }
 
-const UploadScreen: React.FC<UploadScreenProps> = ({ onUploadSuccess, onNavigateDashboard }) => {
+const UploadScreen: React.FC<UploadScreenProps> = ({ onUploadSuccess, onNavigateDashboard, isDarkMode, toggleTheme }) => {
   const [file, setFile] = useState<File | null>(null);
   const [format, setFormat] = useState<'csv' | 'json'>('csv');
   const [uploading, setUploadStatus] = useState<boolean>(false);
@@ -53,7 +55,9 @@ const UploadScreen: React.FC<UploadScreenProps> = ({ onUploadSuccess, onNavigate
       <Sidebar 
         currentView="upload" 
         onNavigateUpload={() => {}} 
-        onNavigateDashboard={onNavigateDashboard} 
+        onNavigateDashboard={onNavigateDashboard}
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
       />
 
       {/* Main Content Area */}
