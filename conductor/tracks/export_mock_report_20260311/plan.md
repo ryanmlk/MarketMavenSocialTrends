@@ -9,11 +9,11 @@
     -   [x] Sub-task: Write a failing test for reading the CSV file.
     -   [x] Sub-task: Implement logic in `generate-report.ts` to read and parse `/mnt/area51/Projects/SocialsMonitor/scraped_reddit_data.csv`.
     -   [x] Sub-task: Ensure the test passes.
--   [ ] **Task: Implement Correlation Analysis for PDF**
-    -   [ ] Sub-task: Write a failing test for the correlation analysis output.
-    -   [ ] Sub-task: In `generate-report.ts`, adapt the existing `detectCorrelations` logic or reuse it to process the post text from the CSV.
-    -   [ ] Sub-task: Add the correlation analysis results to the PDF.
-    -   [ ] Sub-task: Ensure the test passes.
+- [x] **Task: Implement Correlation Analysis for PDF** [35faeea]
+    -   [x] Sub-task: Write a failing test for the correlation analysis output.
+    -   [x] Sub-task: In `generate-report.ts`, adapt the existing `detectCorrelations` logic or reuse it to process the post text from the CSV.
+    -   [x] Sub-task: Add the correlation analysis results to the PDF.
+    -   [x] Sub-task: Ensure the test passes.
 -   [ ] **Task: Implement Conversations over Time Graph for PDF**
     -   [ ] Sub-task: Write a failing test for the time-series data generation.
     -   [ ] Sub-task: In `generate-report.ts`, process the 'Timestamp' data from the CSV to aggregate post counts over a time period (e.g., daily).
