@@ -14,20 +14,20 @@
     -   [x] Sub-task: In `generate-report.ts`, adapt the existing `detectCorrelations` logic or reuse it to process the post text from the CSV.
     -   [x] Sub-task: Add the correlation analysis results to the PDF.
     -   [x] Sub-task: Ensure the test passes.
--   [ ] **Task: Implement Conversations over Time Graph for PDF**
-    -   [ ] Sub-task: Write a failing test for the time-series data generation.
-    -   [ ] Sub-task: In `generate-report.ts`, process the 'Timestamp' data from the CSV to aggregate post counts over a time period (e.g., daily).
-    -   [ ] Sub-task: Use a charting library compatible with the chosen PDF library (or generate an image and embed it) to create the line graph.
-    -   [ ] Sub-task: Add the graph to the PDF.
-    -   [ ] Sub-task: Ensure the test passes.
--   [ ] **Task: Add Hashtags and Likes to PDF**
-    -   [ ] Sub-task: Write a failing test for including hashtags and likes.
-    -   [ ] Sub-task: Add the 'Hashtags' and 'Likes' data from the CSV to the PDF in a readable format.
-    -   [ ] Sub-task: Ensure the test passes.
--   [ ] **Task: Finalize and Generate the PDF**
-    -   [ ] Sub-task: Add a title and structure to the PDF document.
-    -   [ ] Sub-task: Run the `generate-report.ts` script to produce the final `social_analysis_report.pdf`.
--   [ ] **Task: Conductor - User Manual Verification 'Phase 1: PDF Report Generation Script' (Protocol in workflow.md)**
+- [x] **Task: Implement Conversations over Time Graph for PDF** [14d2c50]
+    -   [x] Sub-task: Write a failing test for the time-series data generation.
+    -   [x] Sub-task: In `generate-report.ts`, process the 'Timestamp' data from the CSV to aggregate post counts over a time period (e.g., daily).
+    -   [x] Sub-task: Use a charting library compatible with the chosen PDF library (or generate an image and embed it) to create the line graph.
+    -   [x] Sub-task: Add the graph to the PDF.
+    -   [x] Sub-task: Ensure the test passes.
+- [x] **Task: Add Hashtags and Likes to PDF** [14d2c50]
+    -   [x] Sub-task: Write a failing test for including hashtags and likes.
+    -   [x] Sub-task: Add the 'Hashtags' and 'Likes' data from the CSV to the PDF in a readable format.
+    -   [x] Sub-task: Ensure the test passes.
+- [x] **Task: Finalize and Generate the PDF** [14d2c50]
+    -   [x] Sub-task: Add a title and structure to the PDF document.
+    -   [x] Sub-task: Run the `generate-report.ts` script to produce the final `social_analysis_report.pdf`.
+- [ ] **Task: Conductor - User Manual Verification 'Phase 1: PDF Report Generation Script' (Protocol in workflow.md)**
 
 ## Phase 2: Integration and Serving the PDF
 
