@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readCsvData } from './generate-report';
+import { readCsvData, generateCorrelationAnalysis } from './generate-report';
 import * as path from 'path';
 
 describe('generate-report', () => {
@@ -12,5 +12,18 @@ describe('generate-report', () => {
     expect(data[0]).toHaveProperty('Hashtags');
     expect(data[0]).toHaveProperty('Timestamp');
     expect(data[0]).toHaveProperty('Likes');
+  });
+
+  it('should generate correlation analysis for the PDF', () => {
+    const sampleData = [
+      { 'Post text': 'react is awesome' },
+      { 'Post text': 'react and node are great' },
+      { 'Post text': 'node is fun' },
+    ];
+    const correlationAnalysis = generateCorrelationAnalysis(sampleData);
+    expect(correlationAnalysis).toEqual([
+      { text: 'Correlation Analysis', style: 'header' },
+      { text: 'No significant correlations found.' },
+    ]);
   });
 });
