@@ -1,5 +1,13 @@
 import { describe, it, expect } from 'vitest';
-import { readCsvData, generateCorrelationAnalysis, generateTimeSeriesData, generateChartImage, generatePdfContent } from './generate-report';
+import { 
+  readCsvData, 
+  generateCorrelationAnalysis, 
+  generateTimeSeriesData, 
+  generateChartImage, 
+  generatePdfContent,
+  generateTrendingKeywordsSummary,
+  generateLikesSummary
+} from './generate-report';
 import * as path from 'path';
 
 describe('generate-report', () => {
@@ -14,7 +22,7 @@ describe('generate-report', () => {
     expect(data[0]).toHaveProperty('Likes');
   });
 
-  it('should generate correlation analysis for the PDF', () => {
+  it('should generate correlation analysis for the PDF with top 10 limit and stop words removed', () => {
     const sampleData = [
       { 'Post text': 'react is awesome' },
       { 'Post text': 'react and node are great' },
@@ -22,7 +30,7 @@ describe('generate-report', () => {
     ];
     const correlationAnalysis = generateCorrelationAnalysis(sampleData);
     expect(correlationAnalysis).toEqual([
-      { text: 'Correlation Analysis', style: 'header', margin: [0, 20, 0, 10] },
+      { text: 'Correlation Analysis (Top 10)', style: 'header', margin: [0, 20, 0, 10] },
       { text: 'No significant correlations found.' },
     ]);
   });
@@ -57,21 +65,21 @@ describe('generate-report', () => {
     // @ts-ignore
     const pdfContent = await generatePdfContent(sampleData);
     expect(pdfContent).toEqual(expect.arrayContaining([
-      expect.objectContaining({ text: 'Correlation Analysis' }),
+      expect.objectContaining({ text: 'Correlation Analysis (Top 10)' }),
       expect.objectContaining({ image: expect.stringMatching(/^data:image\/png;base64,/) }),
     ]));
   });
 
-  it('should include hashtags and likes in the PDF content', async () => {
+  it('should include trending keywords and likes in the PDF content', async () => {
     const sampleData = [
-      { 'Post text': 'post 1', Hashtags: '#tag1 #tag2', Likes: '10', Timestamp: '2024-01-01T12:00:00Z' },
-      { 'Post text': 'post 2', Hashtags: '#tag2 #tag3', Likes: '20', Timestamp: '2024-01-01T13:00:00Z' },
+      { 'Post text': 'post with react', Hashtags: '#tag1 #tag2', Likes: '10', Timestamp: '2024-01-01T12:00:00Z' },
+      { 'Post text': 'post with node', Hashtags: '#tag2 #tag3', Likes: '20', Timestamp: '2024-01-01T13:00:00Z' },
     ];
     // @ts-ignore
     const pdfContent = await generatePdfContent(sampleData);
     expect(pdfContent).toEqual(expect.arrayContaining([
-      expect.objectContaining({ text: 'Hashtags Summary' }),
-      expect.objectContaining({ text: 'Likes Summary' }),
+      expect.objectContaining({ text: 'Trending Keywords (Top 10)' }),
+      expect.objectContaining({ text: 'Top Posts by Likes (Top 10)' }),
     ]));
   });
 });

@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { parse } from 'csv-parse';
+import { extractKeywords } from './cleaning';
 import { detectCorrelations } from './correlation';
 import { createCanvas } from 'canvas';
 import { Chart, registerables } from 'chart.js';
@@ -28,11 +29,11 @@ export async function readCsvData(filePath: string): Promise<any[]> {
 }
 
 export function generateCorrelationAnalysis(data: any[]): any[] {
-  const posts = data.map(row => row['Post text'].toLowerCase().split(/\s+/));
-  const correlations = detectCorrelations(posts);
+  const posts = data.map(row => extractKeywords(row['Post text'] || ''));
+  const correlations = detectCorrelations(posts).slice(0, 10);
 
   const content: any[] = [
-    { text: 'Correlation Analysis', style: 'header', margin: [0, 20, 0, 10] },
+    { text: 'Correlation Analysis (Top 10)', style: 'header', margin: [0, 20, 0, 10] },
   ];
 
   if (correlations.length > 0) {
@@ -95,38 +96,38 @@ export async function generateChartImage(timeSeriesData: Record<string, number>)
   return canvas.toDataURL();
 }
 
-export function generateHashtagsSummary(data: any[]): any[] {
-  const hashtagCounts: Record<string, number> = {};
-  data.forEach(row => {
-    const hashtags = row.Hashtags ? row.Hashtags.split(/\s+/) : [];
-    hashtags.forEach((tag: string) => {
-      if (tag.startsWith('#')) {
-        hashtagCounts[tag] = (hashtagCounts[tag] || 0) + 1;
-      }
+export function generateTrendingKeywordsSummary(data: any[]): any[] {
+  const keywordCounts: Map<string, number> = new Map();
+  data.forEach(item => {
+    const keywords = extractKeywords(item['Post text'] || '');
+    keywords.forEach(kw => {
+      // Normalize keyword to look like main app's hashtag/keyword display
+      const name = kw.startsWith('#') ? kw : `#${kw}`;
+      keywordCounts.set(name, (keywordCounts.get(name) || 0) + 1);
     });
   });
 
-  const sortedHashtags = Object.entries(hashtagCounts)
-    .sort(([, a], [, b]) => b - a)
+  const sortedKeywords = Array.from(keywordCounts.entries())
+    .sort((a, b) => b[1] - a[1])
     .slice(0, 10);
 
   const content: any[] = [
-    { text: 'Hashtags Summary', style: 'header', margin: [0, 20, 0, 10] },
+    { text: 'Trending Keywords (Top 10)', style: 'header', margin: [0, 20, 0, 10] },
   ];
 
-  if (sortedHashtags.length > 0) {
+  if (sortedKeywords.length > 0) {
     content.push({
       table: {
         headerRows: 1,
         widths: ['*', 'auto'],
         body: [
-          ['Hashtag', 'Count'],
-          ...sortedHashtags.map(([tag, count]) => [tag, count.toString()])
+          ['Keyword', 'Frequency'],
+          ...sortedKeywords.map(([name, count]) => [name, count.toString()])
         ]
       }
     });
   } else {
-    content.push({ text: 'No hashtags found.' });
+    content.push({ text: 'No trending keywords found.' });
   }
 
   return content;
@@ -135,14 +136,14 @@ export function generateHashtagsSummary(data: any[]): any[] {
 export function generateLikesSummary(data: any[]): any[] {
   const postLikes = data
     .map(row => ({
-      text: row['Post text'].substring(0, 100) + (row['Post text'].length > 100 ? '...' : ''),
+      text: (row['Post text'] || '').substring(0, 100) + ((row['Post text'] || '').length > 100 ? '...' : ''),
       likes: parseInt(row.Likes) || 0
     }))
     .sort((a, b) => b.likes - a.likes)
     .slice(0, 10);
 
   const content: any[] = [
-    { text: 'Likes Summary', style: 'header', margin: [0, 20, 0, 10] },
+    { text: 'Top Posts by Likes (Top 10)', style: 'header', margin: [0, 20, 0, 10] },
   ];
 
   if (postLikes.length > 0) {
@@ -167,7 +168,7 @@ export async function generatePdfContent(data: any[]): Promise<any[]> {
   const correlationAnalysis = generateCorrelationAnalysis(data);
   const timeSeriesData = generateTimeSeriesData(data);
   const chartImage = await generateChartImage(timeSeriesData);
-  const hashtagsSummary = generateHashtagsSummary(data);
+  const trendingKeywords = generateTrendingKeywordsSummary(data);
   const likesSummary = generateLikesSummary(data);
 
   return [
@@ -175,7 +176,7 @@ export async function generatePdfContent(data: any[]): Promise<any[]> {
     ...correlationAnalysis,
     { text: 'Conversations Over Time', style: 'header', margin: [0, 20, 0, 10] },
     { image: chartImage, width: 500 },
-    ...hashtagsSummary,
+    ...trendingKeywords,
     ...likesSummary
   ];
 }
