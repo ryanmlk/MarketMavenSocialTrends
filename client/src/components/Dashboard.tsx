@@ -52,11 +52,18 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
-      legend: { display: false },
+      legend: { 
+        display: true,
+        position: 'bottom' as const,
+        labels: {
+          color: '#94a3b8' // slate-400
+        }
+      },
     },
     scales: {
-      x: { display: false },
+      x: { display: true, grid: { display: false }, ticks: { color: '#64748b' } },
       y: { display: false },
     },
   };
@@ -118,7 +125,7 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
                     <span className="text-slate-400 dark:text-slate-500 font-normal text-sm ml-1 italic">vs last month</span>
                   </div>
                 </div>
-                <div className="md:w-2/3 h-48">
+                <div className="flex-1 w-full h-64">
                   <Line data={chartData} options={chartOptions} />
                 </div>
               </div>
@@ -135,17 +142,36 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
                   </h4>
                 </div>
                 <div className="space-y-6">
-                  {data.keywords.map((kw, i) => (
-                    <div key={i}>
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium text-slate-800 dark:text-slate-200">{kw.name}</span>
-                        <span className="text-emerald-500 font-bold text-sm">+{kw.growth}%</span>
+                  {data.keywords.map((kw, i) => {
+                    // Use kw.growth for the visual width to match the displayed text label
+                    const maxGrowth = Math.max(...data.keywords.map(k => k.growth), 1); // Avoid division by zero
+                    const normalizedWidth = (kw.growth / maxGrowth) * 100;
+                    
+                    let colorClass = 'bg-primary shadow-[0_0_10px_rgba(106,37,244,0.5)]';
+                    let textColorClass = 'text-primary';
+                    if (kw.growth >= 20) {
+                      colorClass = 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]';
+                      textColorClass = 'text-emerald-500';
+                    } else if (kw.growth > 5) {
+                      colorClass = 'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]';
+                      textColorClass = 'text-amber-500';
+                    } else {
+                      colorClass = 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]';
+                      textColorClass = 'text-rose-500';
+                    }
+
+                    return (
+                      <div key={i}>
+                        <div className="flex justify-between mb-2">
+                          <span className="font-medium text-slate-800 dark:text-slate-200">{kw.name}</span>
+                          <span className={`${textColorClass} font-bold text-sm`}>+{kw.growth}%</span>
+                        </div>
+                        <div className="h-2 w-full bg-slate-200 dark:bg-white/5 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full ${colorClass}`} style={{ width: `${normalizedWidth}%` }}></div>
+                        </div>
                       </div>
-                      <div className="h-2 w-full bg-slate-200 dark:bg-white/5 rounded-full overflow-hidden">
-                        <div className="h-full bg-primary rounded-full shadow-[0_0_10px_rgba(106,37,244,0.5)]" style={{ width: `${kw.percentage}%` }}></div>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
@@ -156,17 +182,24 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
                   Correlation Analysis
                 </h4>
                 <div className="flex flex-col gap-4">
-                  {data.correlations.map((cor, i) => (
-                    <div key={i} className="p-4 rounded-lg bg-white/5 border border-white/5 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold text-xs">
-                        {cor.score}
+                  {data.correlations.map((cor, i) => {
+                    let badgeColor = 'bg-slate-500/20 text-slate-500';
+                    if (cor.level.includes('Strong')) badgeColor = 'bg-emerald-500/20 text-emerald-500';
+                    else if (cor.level.includes('Moderate')) badgeColor = 'bg-amber-500/20 text-amber-500';
+                    else if (cor.level.includes('Weak')) badgeColor = 'bg-rose-500/20 text-rose-500';
+
+                    return (
+                      <div key={i} className="p-4 rounded-lg bg-white/5 border border-white/5 flex items-center gap-4">
+                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold text-xs ${badgeColor}`}>
+                          {cor.score}
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold">{cor.pair}</p>
+                          <p className="text-[10px] text-slate-500 uppercase font-bold">{cor.level}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm font-semibold">{cor.pair}</p>
-                        <p className="text-[10px] text-slate-500 uppercase font-bold">{cor.level}</p>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
