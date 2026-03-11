@@ -1,0 +1,8 @@
+{
+  "track_id": "ui_enhancements_20260310",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-03-10T19:40:00Z",
+  "updated_at": "2026-03-10T19:40:00Z",
+  "description": "A few UI changes listed below need to be made \\ 1. For trending keywords the colours and size of the bars don't properly reflect the values... 2. Correlation analysis colors... 3. Main graph stretch and legend... 4. Light mode toggle."
+}
