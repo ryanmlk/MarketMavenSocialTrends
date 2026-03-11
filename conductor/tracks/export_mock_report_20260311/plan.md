@@ -31,13 +31,13 @@
 
 ## Phase 2: Integration and Serving the PDF
 
--   [ ] **Task: Store the generated PDF**
-    -   [ ] Sub-task: Place the `social_analysis_report.pdf` into a directory that will be served publicly by the frontend server (e.g., `client/public/`).
--   [ ] **Task: Update Frontend Export Button**
-    -   [ ] Sub-task: Write a failing test for the export button's new behavior.
-    -   [ ] Sub-task: Modify the `onClick` handler for the "Export Report" button in `client/src/components/Dashboard.tsx`.
-    -   [ ] Sub-task: Change the handler to directly link to the path of the static PDF (e.g., `/social_analysis_report.pdf`).
-    -   [ ] Sub-task: Ensure the test passes.
--   [ ] **Task: Clean up old export endpoint (optional but recommended)**
-    -   [ ] Sub-task: Since the export is now a static file, the `/api/export` endpoint in the Express server (`server/src/index.ts`) may no longer be needed. Analyze and consider removing it and its related tests (`server/src/export.test.ts`).
+- [x] **Task: Store the generated PDF** [2ae6d7f]
+    -   [x] Sub-task: Place the `social_analysis_report.pdf` into a directory that will be served publicly by the frontend server (e.g., `client/public/`).
+- [x] **Task: Update Frontend Export Button** [2413b5c]
+    -   [x] Sub-task: Write a failing test for the export button's new behavior.
+    -   [x] Sub-task: Modify the `onClick` handler for the "Export Report" button in `client/src/components/Dashboard.tsx`.
+    -   [x] Sub-task: Change the handler to directly link to the path of the static PDF (e.g., `/social_analysis_report.pdf`).
+    -   [x] Sub-task: Ensure the test passes.
+- [x] **Task: Clean up old export endpoint (optional but recommended)** [2413b5c]
+    -   [x] Sub-task: Since the export is now a static file, the `/api/export` endpoint in the Express server (`server/src/index.ts`) may no longer be needed. Analyze and consider removing it and its related tests (`server/src/export.test.ts`).
 -   [ ] **Task: Conductor - User Manual Verification 'Phase 2: Integration and Serving the PDF' (Protocol in workflow.md)**
