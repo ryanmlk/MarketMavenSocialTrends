@@ -5,10 +5,10 @@
 - [x] **Task: Set up PDF generation environment** [f35954a]
     -   [x] Sub-task: Choose and install a Node.js library for PDF creation (e.g., `pdfkit`, `jspdf`). I will research the best option.
     -   [x] Sub-task: Create a new script file `server/src/generate-report.ts`.
--   [ ] **Task: Read and process CSV data**
-    -   [ ] Sub-task: Write a failing test for reading the CSV file.
-    -   [ ] Sub-task: Implement logic in `generate-report.ts` to read and parse `/mnt/area51/Projects/SocialsMonitor/scraped_reddit_data.csv`.
-    -   [ ] Sub-task: Ensure the test passes.
+- [x] **Task: Read and process CSV data** [a4f8a30]
+    -   [x] Sub-task: Write a failing test for reading the CSV file.
+    -   [x] Sub-task: Implement logic in `generate-report.ts` to read and parse `/mnt/area51/Projects/SocialsMonitor/scraped_reddit_data.csv`.
+    -   [x] Sub-task: Ensure the test passes.
 -   [ ] **Task: Implement Correlation Analysis for PDF**
     -   [ ] Sub-task: Write a failing test for the correlation analysis output.
     -   [ ] Sub-task: In `generate-report.ts`, adapt the existing `detectCorrelations` logic or reuse it to process the post text from the CSV.
