@@ -1,6 +1,6 @@
 # Implementation Plan: Pre-generated PDF Report Export
 
-## Phase 1: PDF Report Generation Script
+## Phase 1: PDF Report Generation Script [checkpoint: 13e6d37]
 
 - [x] **Task: Set up PDF generation environment** [f35954a]
     -   [x] Sub-task: Choose and install a Node.js library for PDF creation (e.g., `pdfkit`, `jspdf`). I will research the best option.
