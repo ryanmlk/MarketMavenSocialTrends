@@ -33,9 +33,11 @@ interface DashboardProps {
     themes: { title: string; impact: string; description: string }[];
   };
   onNavigateUpload: () => void;
+  isDarkMode: boolean;
+  toggleTheme: () => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
+const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload, isDarkMode, toggleTheme }) => {
   const chartData = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
@@ -73,7 +75,9 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
       <Sidebar 
         currentView="dashboard" 
         onNavigateUpload={onNavigateUpload} 
-        onNavigateDashboard={() => {}} 
+        onNavigateDashboard={() => {}}
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
       />
 
       {/* Main Content */}
@@ -97,8 +101,8 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onNavigateUpload }) => {
                 <button 
                   onClick={() => {
                     const link = document.createElement('a');
-                    link.href = '/api/export';
-                    link.setAttribute('download', 'social_analysis_report.csv');
+                    link.href = '/social_analysis_report.pdf';
+                    link.setAttribute('download', 'social_analysis_report.pdf');
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);

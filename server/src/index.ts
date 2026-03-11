@@ -3,7 +3,6 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs/promises';
 import { parse } from 'csv-parse/sync';
-import { parse as json2csv } from 'json2csv';
 import { analyzeSocialData } from './analyzer.js';
 
 const app = express();
@@ -57,38 +56,6 @@ app.get('/api/analysis', (req, res) => {
     return res.status(404).json({ error: 'No analysis data available. Please upload a file first.' });
   }
   res.json(lastAnalysis);
-});
-
-app.get('/api/export', (req, res) => {
-  if (!lastAnalysis) {
-    return res.status(404).json({ error: 'No analysis data available to export.' });
-  }
-
-  try {
-    // Format data for CSV
-    const reportData = lastAnalysis.themes.map((theme: any, index: number) => ({
-      Type: 'Theme',
-      Name: theme.title,
-      Detail1: theme.impact,
-      Detail2: theme.description
-    })).concat(
-      lastAnalysis.keywords.map((kw: any) => ({
-        Type: 'Keyword',
-        Name: kw.name,
-        Detail1: `Growth: +${kw.growth}%`,
-        Detail2: `Share: ${kw.percentage}%`
-      }))
-    );
-
-    const csv = json2csv(reportData, { fields: ['Type', 'Name', 'Detail1', 'Detail2'] });
-    
-    res.header('Content-Type', 'text/csv');
-    res.attachment('social_analysis_report.csv');
-    res.send(csv);
-  } catch (error) {
-    console.error('Export error:', error);
-    res.status(500).json({ error: 'Failed to generate report.' });
-  }
 });
 
 if (process.env.NODE_ENV !== 'test') {
