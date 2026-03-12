@@ -24,3 +24,4 @@ jobs:
                     cd /mnt/data/Projects/MarketMavenSocialTrends
                     docker compose pull
                     docker compose up -d
+                EOF
