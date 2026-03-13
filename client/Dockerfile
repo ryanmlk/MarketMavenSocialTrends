@@ -1,23 +1,35 @@
-FROM node:20-alpine AS build                                                                                                                                            │
+# Build stage
+FROM node:20-alpine AS build
 
-WORKDIR /app                                                                                                                                                            │
+WORKDIR /app
 
-# Install dependencies                                                                                                                                                  │
-COPY package*.json ./                                                                                                                                                   │
-RUN npm install                                                                                                                                                         │
+# Install dependencies
+COPY package*.json ./
+RUN npm ci
 
-# Copy application code and build                                                                                                                                       │
-COPY . .                                                                                                                                                                │
-RUN npm run build                                                                                                                                                       │                                                                                                                                                  │
+# Copy application code and build
+COPY . .
+RUN npm run build
 
-# Serve static files using a simple HTTP server                                                                                                                         │
-# Install 'serve' package globally                                                                                                                                      │
-RUN npm install -g serve                                                                                                                                                │
+# Serve stage
+FROM node:20-alpine
 
-# Expose the port the server will run on                                                                                                                                │
-EXPOSE 3000                                                                                                                                                             │
+# Patch OS-level vulnerabilities
+RUN apk update && apk upgrade --no-cache
 
-# Command to run the server                                                                                                                                             │
-# 'serve' by default serves files from the current directory (which will be /app)                                                                                       │
-# We specify the build output directory for 'serve'                                                                                                                     │
-CMD ["serve", "-s", "dist", "-l", "3000"]
+WORKDIR /app
+
+# Install 'serve' locally in the production stage
+RUN npm install serve
+
+# Copy built assets from build stage
+COPY --from=build /app/dist ./dist
+
+# Use a non-root user for better security
+USER node
+
+# Expose port 3000 as requested
+EXPOSE 3000
+
+# Command to run the server
+CMD ["npx", "serve", "-s", "dist", "-l", "3000"]
